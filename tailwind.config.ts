@@ -62,17 +62,15 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				discord: {
-					blurple: '#5865F2',
-					green: '#57F287',
-					yellow: '#FEE75C',
-					fuchsia: '#EB459E',
-					red: '#ED4245',
-					background: '#36393F',
-					channelsBg: '#2F3136',
-					serversBg: '#202225',
-					text: '#DCDDDE',
-					border: '#3f4147'
+				furry: {
+					dark: '#0D0D15',
+					background: '#0F111F',
+					darker: '#0A0C17',
+					cyan: '#38BDF8',
+					purple: '#8B5CF6',
+					pink: '#EC4899',
+					neon: '#00F5FF',
+					accent: '#5639E4'
 				}
 			},
 			borderRadius: {
@@ -96,11 +94,16 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-neon': {
+					'0%, 100%': { opacity: 1, filter: 'brightness(1)' },
+					'50%': { opacity: 0.6, filter: 'brightness(1.3)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-neon': 'pulse-neon 3s ease-in-out infinite'
 			}
 		}
 	},
