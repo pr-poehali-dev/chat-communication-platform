@@ -4,6 +4,7 @@ export interface User {
   username: string;
   avatar: string;
   status: 'online' | 'idle' | 'dnd' | 'offline';
+  isBot?: boolean;
 }
 
 export interface Message {
@@ -11,19 +12,17 @@ export interface Message {
   content: string;
   user: User;
   timestamp: string;
-  attachments?: Array<{
-    id: string;
-    type: 'image' | 'file';
-    url: string;
-    name?: string;
-  }>;
+  attachments?: string[];
+  reactions?: { emoji: string; count: number; reacted: boolean }[];
 }
 
 export interface Channel {
   id: string;
   name: string;
-  type: 'text' | 'voice';
+  type: 'text' | 'voice' | 'announcement';
+  description?: string;
   messages: Message[];
+  unreadCount?: number;
 }
 
 export interface Server {
@@ -32,4 +31,27 @@ export interface Server {
   icon: string;
   channels: Channel[];
   members: User[];
+  ownerId: string;
+}
+
+export interface ChatContextState {
+  servers: Server[];
+  selectedServer: Server | null;
+  selectedChannel: Channel | null;
+  currentUser: User;
+  isVoiceChannel: boolean;
+  handleServerSelect: (server: Server, isMobile: boolean) => boolean;
+  handleChannelSelect: (channel: Channel, isMobile: boolean) => boolean;
+  handleSendMessage: (content: string) => void;
+  handleUpdateUser: (updatedUser: User) => void;
+}
+
+export interface ResponsiveContextState {
+  isMobile: boolean;
+  showServerSidebar: boolean;
+  showChannelSidebar: boolean;
+  toggleServerSidebar: () => void;
+  toggleChannelSidebar: () => void;
+  setShowServerSidebar: (show: boolean) => void;
+  setShowChannelSidebar: (show: boolean) => void;
 }
